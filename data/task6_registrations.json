@@ -1,0 +1,54 @@
+{
+  "registrations": [
+    {
+      "id": 1,
+      "type": "A",
+      "id_hash": "00000000a348f54e",
+      "type_hash": "00000000320dc853",
+      "key_hash": "000000002f4b8572",
+      "raw_id": "DRONE001",
+      "raw_type": "A",
+      "raw_key": "KEY_1_1768287770",
+      "trust_level": 60,
+      "last_update": 1768287770
+    },
+    {
+      "id": 2,
+      "type": "B",
+      "id_hash": "00000000a348f54f",
+      "type_hash": "00000000f5db07bc",
+      "key_hash": "00000000603ee2da",
+      "raw_id": "DRONE002",
+      "raw_type": "B",
+      "raw_key": "KEY_2_1768287777",
+      "trust_level": 60,
+      "last_update": 1768287777
+    },
+    {
+      "id": 3,
+      "type": "C",
+      "id_hash": "00000000a348f550",
+      "type_hash": "00000000b9a8473a",
+      "key_hash": "0000000091324057",
+      "raw_id": "DRONE003",
+      "raw_type": "C",
+      "raw_key": "KEY_3_1768287782",
+      "trust_level": 60,
+      "last_update": 1768287782
+    },
+    {
+      "id": 4,
+      "type": "A",
+      "id_hash": "00000000a348f551",
+      "type_hash": "00000000c4e7e09d",
+      "key_hash": "00000000c2259dbc",
+      "raw_id": "DRONE004",
+      "raw_type": "A",
+      "raw_key": "KEY_4_1768287786",
+      "trust_level": 60,
+      "last_update": 1768287786
+    }
+  ],
+  "total_count": 4,
+  "save_time": 1768291743
+}

@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>无人机管理与网络威胁预警系统</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <header class="header">
+            <h1><i class="fas fa-helicopter"></i> 无人机管理与网络威胁预警系统</h1>
+            <p>基于无人机充电桩的分发算法实验平台</p>
+        </header>
+
+        <!-- 任务选择器 -->
+        <div class="task-selector">
+            <button class="task-btn active" data-task="1">
+                <i class="fas fa-battery-quarter"></i>
+                <span>任务1</span>
+                <small>基础充电站</small>
+            </button>
+            <button class="task-btn" data-task="2">
+                <i class="fas fa-battery-half"></i>
+                <span>任务2</span>
+                <small>类型充电</small>
+            </button>
+            <button class="task-btn" data-task="3">
+                <i class="fas fa-battery-three-quarters"></i>
+                <span>任务3</span>
+                <small>精确时间</small>
+            </button>
+            <button class="task-btn" data-task="4">
+                <i class="fas fa-battery-full"></i>
+                <span>任务4</span>
+                <small>紧急调度</small>
+            </button>
+            <button class="task-btn" data-task="5">
+                <i class="fas fa-exchange-alt"></i>
+                <span>任务5</span>
+                <small>双入口站</small>
+            </button>
+            <button class="task-btn" data-task="6">
+                <i class="fas fa-shield-alt"></i>
+                <span>任务6</span>
+                <small>安全认证</small>
+            </button>
+            <button class="task-btn" data-task="7">
+                <i class="fas fa-chart-line"></i>
+                <span>任务7</span>
+                <small>优先级调度</small>
+            </button>
+        </div>
+
+        <!-- 主要内容区域 -->
+        <div class="main-content">
+            <!-- 输入区域 -->
+            <div class="input-section">
+                <div class="input-header">
+                    <h3 id="task-title">任务1：基础充电站管理</h3>
+                </div>
+                <div class="input-content">
+
+                <!-- 任务1输入 -->
+                <div class="input-form" id="form-task1">
+                    <div class="form-group">
+                        <label>操作类型</label>
+                        <select id="task1-action">
+                            <option value="a">到达 (a)</option>
+                            <option value="d">离开 (d)</option>
+                            <option value="t">统计 (t)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>无人机编号</label>
+                        <input type="number" id="task1-id" placeholder="输入无人机编号">
+                    </div>
+                    <div class="form-group">
+                        <label>时间</label>
+                        <input type="number" id="task1-time" placeholder="输入时间">
+                    </div>
+                    <button class="submit-btn" onclick="submitTask1()">
+                        <i class="fas fa-paper-plane"></i> 提交操作
+                    </button>
+                </div>
+
+                <!-- 任务2输入 -->
+                <div class="input-form hidden" id="form-task2">
+                    <div class="form-group">
+                        <label>操作类型</label>
+                        <select id="task2-action">
+                            <option value="a">到达 (a)</option>
+                            <option value="d">离开 (d)</option>
+                            <option value="s">统计 (s)</option>
+                            <option value="c">类型转换 (c)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>无人机编号</label>
+                        <input type="number" id="task2-id" placeholder="输入无人机编号">
+                    </div>
+                    <div class="form-group">
+                        <label id="task2-type-label">无人机类型</label>
+                        <select id="task2-type">
+                            <option value="A">A类无人机</option>
+                            <option value="B">B类无人机</option>
+                            <option value="C">C类无人机</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>时间</label>
+                        <input type="number" id="task2-time" placeholder="输入时间">
+                    </div>
+                    <button class="submit-btn" onclick="submitTask2()">
+                        <i class="fas fa-paper-plane"></i> 提交操作
+                    </button>
+                </div>
+
+                <!-- 任务3输入 -->
+                <div class="input-form hidden" id="form-task3">
+                    <div class="form-group">
+                        <label>操作类型</label>
+                        <select id="task3-action">
+                            <option value="a">到达 (a)</option>
+                            <option value="d">离开 (d)</option>
+                            <option value="t">统计 (t)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>无人机编号</label>
+                        <input type="number" id="task3-id" placeholder="输入无人机编号">
+                    </div>
+                    <div class="form-group">
+                        <label>时间</label>
+                        <input type="number" id="task3-time" placeholder="输入时间">
+                    </div>
+                    <button class="submit-btn" onclick="submitTask3()">
+                        <i class="fas fa-paper-plane"></i> 提交操作
+                    </button>
+                </div>
+
+                <!-- 任务4输入 -->
+                <div class="input-form hidden" id="form-task4">
+                    <div class="form-group">
+                        <label>操作类型</label>
+                        <select id="task4-action">
+                            <option value="a">到达 (a)</option>
+                            <option value="d">离开 (d)</option>
+                            <option value="u">紧急调度 (u)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>无人机编号</label>
+                        <input type="number" id="task4-id" placeholder="输入无人机编号">
+                    </div>
+                    <div class="form-group">
+                        <label>无人机类型</label>
+                        <select id="task4-type">
+                            <option value="A">A类无人机</option>
+                            <option value="B">B类无人机</option>
+                            <option value="C">C类无人机</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>时间</label>
+                        <input type="number" id="task4-time" placeholder="输入时间">
+                    </div>
+                    <!-- 紧急调度参数 -->
+                    <div class="emergency-params hidden" id="emergency-params">
+                        <h4>紧急调度参数</h4>
+                        <div class="form-group">
+                            <label>A类无人机数量</label>
+                            <input type="number" id="emergency-a" placeholder="A类数量">
+                        </div>
+                        <div class="form-group">
+                            <label>B类无人机数量</label>
+                            <input type="number" id="emergency-b" placeholder="B类数量">
+                        </div>
+                        <div class="form-group">
+                            <label>C类无人机数量</label>
+                            <input type="number" id="emergency-c" placeholder="C类数量">
+                        </div>
+                        <div class="form-group">
+                            <label>总任务量</label>
+                            <input type="number" id="emergency-x" placeholder="总任务量">
+                        </div>
+                    </div>
+                    <button class="submit-btn" onclick="submitTask4()">
+                        <i class="fas fa-paper-plane"></i> 提交操作
+                    </button>
+                    <button class="submit-btn" onclick="showEmergencyDispatchResult()" style="background-color: #17a2b8; margin-left: 10px;">
+                        <i class="fas fa-eye"></i> 查看调度结果
+                    </button>
+                </div>
+
+                <!-- 任务5输入 -->
+                <div class="input-form hidden" id="form-task5">
+                    <div class="form-group">
+                        <label>操作类型</label>
+                        <select id="task5-action">
+                            <option value="a">到达 (a)</option>
+                            <option value="d">离开 (d)</option>
+                            <option value="s">状态 (s)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>无人机编号</label>
+                        <input type="number" id="task5-id" placeholder="输入无人机编号">
+                    </div>
+                    <div class="form-group">
+                        <label>无人机类型</label>
+                        <select id="task5-type">
+                            <option value="A">A类无人机</option>
+                            <option value="B">B类无人机</option>
+                            <option value="C">C类无人机</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>时间</label>
+                        <input type="number" id="task5-time" placeholder="输入时间">
+                    </div>
+                    <button class="submit-btn" onclick="submitTask5()">
+                        <i class="fas fa-paper-plane"></i> 提交操作
+                    </button>
+                </div>
+
+                <!-- 任务6输入 -->
+                <div class="input-form hidden" id="form-task6">
+                    <div class="form-group">
+                        <label>操作类型</label>
+                        <select id="task6-action">
+                            <option value="r">注册 (r)</option>
+                            <option value="a">到达 (a)</option>
+                            <option value="d">离开 (d)</option>
+                            <option value="s">状态 (s)</option>
+                            <option value="m">管理员 (m)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>无人机编号</label>
+                        <input type="number" id="task6-id" placeholder="输入无人机编号">
+                    </div>
+                    <div class="form-group">
+                        <label>无人机类型</label>
+                        <select id="task6-type">
+                            <option value="A">A类无人机</option>
+                            <option value="B">B类无人机</option>
+                            <option value="C">C类无人机</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>时间</label>
+                        <input type="number" id="task6-time" placeholder="输入时间">
+                    </div>
+                    <div class="form-group">
+                        <label>管理员密码</label>
+                        <input type="password" id="task6-password" placeholder="输入管理员密码">
+                    </div>
+                    <button class="submit-btn" onclick="submitTask6()">
+                        <i class="fas fa-paper-plane"></i> 提交操作
+                    </button>
+                    <button class="submit-btn" onclick="showAllRegistrationInfo()" style="background-color: #28a745; margin-left: 10px;">
+                        <i class="fas fa-info-circle"></i> 查看注册信息
+                    </button>
+                    <button class="submit-btn" onclick="showNetworkAttackVisualization()" style="background-color: #dc3545; margin-left: 10px;">
+                        <i class="fas fa-bomb"></i> 3.无人机投毒攻击与组网坠毁
+                    </button>
+                </div>
+
+                <!-- 任务7输入 -->
+                <div class="input-form hidden" id="form-task7">
+                    <div class="form-group">
+                        <label>操作类型</label>
+                        <select id="task7-action" onchange="toggleTask7Inputs()">
+                            <option value="i">录入无人机 (i)</option>
+                            <option value="s">高响应比优先 (s)</option>
+                            <option value="f">先来先服务 (f)</option>
+                            <option value="j">短作业优先 (j)</option>
+                            <option value="t">查看时刻 (t)</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="task7-id-group">
+                        <label>无人机编号</label>
+                        <input type="number" id="task7-id" placeholder="输入无人机编号" min="1">
+                    </div>
+                    <div class="form-group" id="task7-type-group">
+                        <label>无人机类型</label>
+                        <select id="task7-type">
+                            <option value="A">A类无人机 (1.0x)</option>
+                            <option value="B">B类无人机 (1.5x)</option>
+                            <option value="C">C类无人机 (3.0x)</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="task7-arrival-group">
+                        <label>到达时间</label>
+                        <input type="number" id="task7-arrival-time" placeholder="输入到达时间" min="0">
+                    </div>
+                    <div class="form-group" id="task7-power-group">
+                        <label>当前电量</label>
+                        <input type="number" id="task7-current-power" placeholder="输入当前电量(0-10)" min="0" max="10" step="0.1">
+                    </div>
+                    <div class="form-group hidden" id="task7-time-group">
+                        <label>查看时刻</label>
+                        <input type="number" id="task7-time" placeholder="输入要查看的时刻" min="0">
+                    </div>
+                    <button class="submit-btn" onclick="submitTask7()">
+                        <i class="fas fa-paper-plane"></i> 提交操作
+                    </button>
+                </div>
+                </div>
+            </div>
+
+            <!-- 输出区域 -->
+            <div class="output-section">
+                <div class="output-header">
+                    <h3><i class="fas fa-terminal"></i> 系统输出</h3>
+                    <div class="output-controls">
+                        <button class="clear-btn" onclick="clearOutput()">
+                            <i class="fas fa-trash"></i> 清空
+                        </button>
+                        <button class="export-btn" onclick="exportOutput()">
+                            <i class="fas fa-download"></i> 导出
+                        </button>
+                    </div>
+                </div>
+                <div class="output-content" id="output-content">
+                    <div class="welcome-message">
+                        <i class="fas fa-info-circle"></i>
+                        <p>欢迎使用无人机管理与网络威胁预警系统！</p>
+                        <p>请选择任务并输入相应参数开始测试。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 系统状态可视化区域 -->
+            <div class="visualization-section">
+                <div class="viz-header">
+                    <h3><i class="fas fa-eye"></i> 系统状态</h3>
+                    <div class="current-time-display">
+                        <i class="fas fa-clock"></i>
+                        <span>当前时间: </span>
+                        <span id="current-time-value">0</span>
+                    </div>
+                    <button class="refresh-btn" onclick="refreshSystemState()">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+                
+                <!-- 通用可视化容器（任务1-4，6） -->
+                <div class="system-state-container" id="general-visualization">
+                    <!-- 充电站栈 -->
+                    <div class="state-container">
+                        <div class="state-header">
+                            <i class="fas fa-battery-full"></i>
+                            <span>充电站</span>
+                            <span class="state-count" id="station-count">0/2</span>
+                        </div>
+                        <div class="drone-list" id="charging-station-list">
+                            <div class="empty-slot">空位</div>
+                            <div class="empty-slot">空位</div>
+                        </div>
+                    </div>
+
+                    <!-- 便道队列 -->
+                    <div class="state-container">
+                        <div class="state-header">
+                            <i class="fas fa-list"></i>
+                            <span>便道队列</span>
+                            <span class="state-count" id="queue-list-count">0</span>
+                        </div>
+                        <div class="drone-list" id="waiting-queue-list">
+                            <div class="empty-queue">暂无排队</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 任务5专用双栈可视化 -->
+                <div class="system-state-container hidden" id="task5-visualization">
+                    <div class="dual-stack-info">
+                        <i class="fas fa-info-circle"></i>
+                        <span>双入口充电站：西口（入口A）进，东口（入口B）出</span>
+                    </div>
+                    
+                    <!-- 西口栈 -->
+                    <div class="state-container dual-stack-container">
+                        <div class="state-header west-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>西口栈（入口A）</span>
+                            <span class="state-count" id="west-stack-count">0/2</span>
+                        </div>
+                        <div class="stack-direction-label">← 到达无人机从此进入</div>
+                        <div class="drone-list dual-stack" id="west-stack-list">
+                            <div class="empty-slot">空位（栈顶）</div>
+                            <div class="empty-slot">空位（栈底）</div>
+                        </div>
+                    </div>
+
+                    <!-- 东口栈 -->
+                    <div class="state-container dual-stack-container">
+                        <div class="state-header east-header">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>东口栈（出口B）</span>
+                            <span class="state-count" id="east-stack-count">0/2</span>
+                        </div>
+                        <div class="drone-list dual-stack" id="east-stack-list">
+                            <div class="empty-slot">空位（远离出口）</div>
+                            <div class="empty-slot">空位（靠近出口）</div>
+                        </div>
+                        <div class="stack-direction-label">离开无人机从此出去 →</div>
+                    </div>
+
+                    <!-- 便道队列 -->
+                    <div class="state-container">
+                        <div class="state-header">
+                            <i class="fas fa-list"></i>
+                            <span>链式便道</span>
+                            <span class="state-count" id="task5-queue-count">0</span>
+                        </div>
+                        <div class="drone-list" id="task5-queue-list">
+                            <div class="empty-queue">暂无排队</div>
+                        </div>
+                    </div>
+
+                    <!-- 最大让路深度显示 -->
+                    <div class="state-container bypass-info">
+                        <div class="state-header">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>让路统计</span>
+                        </div>
+                        <div class="bypass-depth">
+                            <span>历史最大让路深度：</span>
+                            <span class="bypass-value" id="max-bypass-depth">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 任务6专用双栈可视化 -->
+                <div class="system-state-container hidden" id="task6-visualization">
+                    <div class="dual-stack-info">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>安全认证双入口充电站：西口（入口A）进，东口（入口B）出</span>
+                    </div>
+                    
+                    <!-- 西口栈 -->
+                    <div class="state-container dual-stack-container">
+                        <div class="state-header west-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>西口栈（入口A）</span>
+                            <span class="state-count" id="task6-west-stack-count">0/2</span>
+                        </div>
+                        <div class="stack-direction-label">← 到达无人机从此进入</div>
+                        <div class="drone-list dual-stack" id="task6-west-stack-list">
+                            <div class="empty-slot">空位（栈顶）</div>
+                            <div class="empty-slot">空位（栈底）</div>
+                        </div>
+                    </div>
+
+                    <!-- 东口栈 -->
+                    <div class="state-container dual-stack-container">
+                        <div class="state-header east-header">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>东口栈（出口B）</span>
+                            <span class="state-count" id="task6-east-stack-count">0/2</span>
+                        </div>
+                        <div class="stack-direction-label">离开无人机从此出去 →</div>
+                        <div class="drone-list dual-stack" id="task6-east-stack-list">
+                            <div class="empty-slot">空位（栈底）</div>
+                            <div class="empty-slot">空位（栈顶）</div>
+                        </div>
+                    </div>
+
+                    <!-- 便道队列 -->
+                    <div class="state-container">
+                        <div class="state-header">
+                            <i class="fas fa-list"></i>
+                            <span>便道队列</span>
+                            <span class="state-count" id="task6-queue-count">0</span>
+                        </div>
+                        <div class="drone-list" id="task6-queue-list">
+                            <div class="empty-queue">便道为空</div>
+                        </div>
+                    </div>
+
+                    <!-- 系统信息 -->
+                    <div class="system-info">
+                        <div class="info-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>历史最大让路深度：</span>
+                            <span id="max-bypass-depth">0</span>
+                        </div>
+                    </div>
+
+                    <!-- 组网可视化 -->
+                    <div class="state-container" id="network-visualization-container" style="display: none;">
+                        <div class="state-header">
+                            <i class="fas fa-network-wired"></i>
+                            <span>无人机组网状态</span>
+                            <span class="state-count" id="network-count-display">0/6</span>
+                        </div>
+                        <div id="network-visualization" class="network-visualization">
+                            <div class="network-canvas" id="network-canvas">
+                                <!-- 组网节点将通过JavaScript动态生成 -->
+                            </div>
+                            <div class="network-status" id="network-status">
+                                <div class="status-item">
+                                    <span>组网状态：</span>
+                                    <span id="network-status-text">正常</span>
+                                </div>
+                                <div class="status-item" id="malicious-drone-info" style="display: none;">
+                                    <span>恶意无人机：</span>
+                                    <span id="malicious-drone-id" style="color: #dc3545; font-weight: bold;">-</span>
+                                </div>
+                                <div class="status-item" id="poison-status" style="display: none;">
+                                    <span>投毒状态：</span>
+                                    <span id="poison-status-text" style="color: #ffc107; font-weight: bold;">未投毒</span>
+                                </div>
+                                <div class="status-item" id="crash-status" style="display: none;">
+                                    <span>坠毁状态：</span>
+                                    <span id="crash-status-text" style="color: #dc3545; font-weight: bold;">正常</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 任务7专用优先级调度可视化 -->
+                <div class="system-state-container hidden" id="task7-visualization">
+                    <div class="dual-stack-info">
+                        <i class="fas fa-chart-line"></i>
+                        <span>高响应比优先调度算法：选择响应比最高的无人机进入充电站</span>
+                    </div>
+                    
+                    <!-- 已录入无人机列表 -->
+                    <div class="state-container">
+                        <div class="state-header">
+                            <i class="fas fa-helicopter"></i>
+                            <span>已录入无人机</span>
+                            <span class="state-count" id="registered-drones-count">0</span>
+                        </div>
+                        <div class="drone-list" id="registered-drones-list">
+                            <div class="empty-queue">暂无录入的无人机</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 充电站 -->
+                    <div class="state-container dual-stack-container">
+                        <div class="state-header west-header">
+                            <i class="fas fa-battery-full"></i>
+                            <span>充电站</span>
+                            <span class="state-count" id="station-count">0/2</span>
+                        </div>
+                        <div class="stack-direction-label">← 高响应比无人机优先进入</div>
+                        <div class="drone-list dual-stack" id="station-list">
+                            <div class="empty-slot">空位（栈顶）</div>
+                            <div class="empty-slot">空位（栈底）</div>
+                        </div>
+                    </div>
+
+                    <!-- 便道队列 -->
+                    <div class="state-container">
+                        <div class="state-header">
+                            <i class="fas fa-list"></i>
+                            <span>便道队列</span>
+                            <span class="state-count" id="queue-count">0</span>
+                        </div>
+                        <div class="drone-list" id="queue-list">
+                            <div class="empty-queue">暂无排队</div>
+                        </div>
+                    </div>
+
+                    <!-- 统计信息 -->
+                    <div class="system-info">
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <span>总执行时间：</span>
+                            <span id="total-execution-time">0</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>平均周转时间：</span>
+                            <span id="avg-turnaround-time">0.00</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-hourglass-half"></i>
+                            <span>平均等待时间：</span>
+                            <span id="avg-wait-time">0.00</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-weight-hanging"></i>
+                            <span>平均带权周转时间：</span>
+                            <span id="avg-weighted-turnaround-time">0.00</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>完成无人机：</span>
+                            <span id="completed-drones">0</span>
+                        </div>
+                        <div class="info-item" style="width: 100%; margin-top: 10px;">
+                            <button class="compare-btn" onclick="showAlgorithmComparison()" id="compare-algorithms-btn" style="display: none;">
+                                <i class="fas fa-balance-scale"></i> 对比三种调度算法
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- 无人机详情弹窗 -->
+    <div class="modal" id="drone-detail-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-helicopter"></i> 无人机详情</h3>
+                <button class="close-btn" onclick="closeDroneDetailModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="drone-detail-content">
+                <!-- 详情内容将通过JavaScript动态填充 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 算法对比弹窗 -->
+    <div class="modal" id="algorithm-comparison-modal">
+        <div class="modal-content comparison-modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-balance-scale"></i> 三种调度算法对比</h3>
+                <button class="close-btn" onclick="closeAlgorithmComparisonModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body comparison-modal-body" id="algorithm-comparison-content">
+                <!-- 对比内容将通过JavaScript动态填充 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 紧急调度结果弹窗 -->
+    <div class="modal" id="emergency-dispatch-modal">
+        <div class="modal-content" style="max-width: 900px; width: 95%;">
+            <div class="modal-header">
+                <h3><i class="fas fa-exclamation-triangle"></i> 紧急调度结果</h3>
+                <button class="close-btn" onclick="closeEmergencyDispatchModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="emergency-dispatch-content" style="padding: 25px; max-height: 70vh; overflow-y: auto;">
+                <!-- 调度结果内容将通过JavaScript动态填充 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 加载脚本：先加载公共函数，再加载各任务的独立逻辑，最后加载主控制脚本 -->
+    <script src="common.js"></script>
+    <script src="task1.js"></script>
+    <script src="task2.js"></script>
+    <script src="task3.js"></script>
+    <script src="task4.js"></script>
+    <script src="task5.js"></script>
+    <script src="task6.js"></script>
+    <script src="task7.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
